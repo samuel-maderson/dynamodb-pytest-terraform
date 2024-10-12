@@ -37,3 +37,14 @@ Before starting, make sure you have the following installed:
    ```bash
    git clone <repository_url>
    cd <repository_name>
+
+
+## Running the Tests
+### Testing Strategy
+
+The Python test suite uses pytest to verify DynamoDB operations. The tests include:
+
+- [Test if the DynamoDB table exists]
+- [Test adding an item to the table]
+- [Test listing all DynamoDB tables]
+- [Test retrieving an item from the table]

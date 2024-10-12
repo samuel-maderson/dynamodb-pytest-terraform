@@ -44,7 +44,7 @@ Before starting, make sure you have the following installed:
 
 The Python test suite uses pytest to verify DynamoDB operations. The tests include:
 
-- [Test if the DynamoDB table exists]
-- [Test adding an item to the table]
-- [Test listing all DynamoDB tables]
-- [Test retrieving an item from the table]
+- Test if the DynamoDB table exists
+- Test adding an item to the table
+- Test listing all DynamoDB tables
+- Test retrieving an item from the table

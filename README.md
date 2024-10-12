@@ -23,9 +23,9 @@ This project uses Terraform to provision a VPC, subnets, security groups, and a 
 
 Before starting, make sure you have the following installed:
 
-- [Terraform](https://www.terraform.io/downloads) (>= 0.13)
+- [Terraform](https://www.terraform.io/downloads) (>= 5.0)
 - [AWS CLI](https://aws.amazon.com/cli/) (configured with appropriate credentials)
-- [Python](https://www.python.org/downloads/) (>= 3.7)
+- [Python](https://www.python.org/downloads/) (>= 3.9)
 - [pip](https://pip.pypa.io/en/stable/installation/) for managing Python packages
 - [pytest](https://docs.pytest.org/en/stable/getting-started.html) for testing
 - [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) for Python AWS SDK

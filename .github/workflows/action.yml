@@ -38,3 +38,7 @@ jobs:
       - uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "1.9.7"
+      - name: Terraform init & Terraform apply
+        run: |
+          cd iac
+          terraform init && terraform apply --auto-approve

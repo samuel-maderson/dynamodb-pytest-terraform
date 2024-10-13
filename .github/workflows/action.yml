@@ -3,6 +3,7 @@ name: Deploy DynamoDB & VPC
 on:
   push:
     branches:
+    - dev
     - main
 
 jobs:

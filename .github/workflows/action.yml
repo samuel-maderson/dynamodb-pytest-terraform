@@ -29,3 +29,11 @@ jobs:
         with:
           name: zipped-bundle
           path: ${{ github.sha }}.zip
+
+
+  deploy:
+     runs-on: ubuntu-latest
+     steps:
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.7"

@@ -10,3 +10,12 @@ vpc = {
   vpc_private_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
   vpc_enable_nat_gateway = true  
 }
+
+dynamodb = {
+  table_name = "Movies"
+  read_capacity = 5
+  write_capacity = 5
+  billing_mode = "PROVISIONED"
+  hash_key = "Year"
+  range_key = "Title"
+}

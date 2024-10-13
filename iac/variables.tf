@@ -15,8 +15,13 @@ variable "vpc" {
   })
 }
 
-# variable "dynamodb" {
-#   type = object({
-
-#   })
-# }
+variable "dynamodb" {
+  type = object({
+    table_name = string
+    read_capacity = number
+    write_capacity = number
+    billing_mode = string
+    hash_key = string
+    range_key = string
+  })
+}

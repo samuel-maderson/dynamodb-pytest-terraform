@@ -1,0 +1,30 @@
+name: Deploy DynamoDB & VPC
+
+on:
+  merge_group:
+    types: [checks_requested]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.10
+      - name: Install libraries
+        run: |
+            cd pytest
+            python -m pip install --upgrade pip
+            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+      - name: Create zip bundle
+        run: |
+            zip -r ../${{ github.sha }}.zip .
+      - name: Archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zipped-bundle
+          path: ${{ github.sha }}.zip

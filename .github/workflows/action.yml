@@ -23,6 +23,8 @@ jobs:
             if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
       - name: Create zip bundle
         run: |
+            pwd
+            ls
             zip -r ../${{ github.sha }}.zip .
       - name: Archive artifact
         uses: actions/upload-artifact@v4

@@ -65,5 +65,5 @@ jobs:
       - name: Pytest - Evaluate DynamoDB Table
         run: |
             cd pytest
-            source .venv/bin/activate
+            source venv/bin/activate
             pytest test_dynamodb.py

@@ -63,6 +63,5 @@ jobs:
       - name: Pytest - Evaluate DynamoDB Table
         run: |
             cd pytest
-            ls -lhta pytest
-            coverage
+            pip install pytest
             pytest test_dynamodb.py

@@ -47,19 +47,23 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      - name: Terraform init & Terraform apply
-        run: |
-          cd iac
-          terraform init && terraform apply --auto-approve
+      # - name: Terraform init & Terraform apply
+      #   run: |
+      #     cd iac
+      #     terraform init && terraform apply --auto-approve
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: 3.9
-      - name: Install libraries & Pytest - Evaluate DynamoDB Table
+      - name: Install libraries
         run: |
             cd pytest
             python -m venv venv
             source venv/bin/activate
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+      - name: Pytest - Evaluate DynamoDB Table
+        run: |
+            cd pytest
+            source .venv/bin/activate
             pytest test_dynamodb.py

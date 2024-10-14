@@ -7,28 +7,28 @@ on:
 
 jobs:
 
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out code
-        uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: 3.9
-      - name: Install libraries
-        run: |
-            cd pytest
-            python -m pip install --upgrade pip
-            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
-      - name: Create zip bundle
-        run: |
-            zip -r ${{ github.sha }}.zip .
-      - name: Archive artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: zipped-bundle
-          path: ${{ github.sha }}.zip
+  # build:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out code
+  #       uses: actions/checkout@v4
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: 3.9
+  #     - name: Install libraries
+  #       run: |
+  #           cd pytest
+  #           python -m pip install --upgrade pip
+  #           if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+  #     - name: Create zip bundle
+  #       run: |
+  #           zip -r ${{ github.sha }}.zip .
+  #     - name: Archive artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: zipped-bundle
+  #         path: ${{ github.sha }}.zip
 
 
   deploy:
@@ -58,12 +58,10 @@ jobs:
       - name: Install libraries
         run: |
             cd pytest
-            python -m venv venv
-            source venv/bin/activate
             python -m pip install --upgrade pip
             if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
       - name: Pytest - Evaluate DynamoDB Table
         run: |
             cd pytest
-            source venv/bin/activate
+            ls -lhta
             pytest test_dynamodb.py

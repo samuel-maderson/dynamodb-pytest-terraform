@@ -7,28 +7,28 @@ on:
 
 jobs:
 
-  # build:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Check out code
-  #       uses: actions/checkout@v4
-  #     - name: Set up Python
-  #       uses: actions/setup-python@v5
-  #       with:
-  #         python-version: 3.9
-  #     - name: Install libraries
-  #       run: |
-  #           cd pytest
-  #           python -m pip install --upgrade pip
-  #           if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
-  #     - name: Create zip bundle
-  #       run: |
-  #           zip -r ${{ github.sha }}.zip .
-  #     - name: Archive artifact
-  #       uses: actions/upload-artifact@v4
-  #       with:
-  #         name: zipped-bundle
-  #         path: ${{ github.sha }}.zip
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.9
+      - name: Install libraries
+        run: |
+            cd pytest
+            python -m pip install --upgrade pip
+            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+      - name: Create zip bundle
+        run: |
+            zip -r ${{ github.sha }}.zip .
+      - name: Archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zipped-bundle
+          path: ${{ github.sha }}.zip
 
 
   deploy:
@@ -47,19 +47,14 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
-      # - name: Terraform init & Terraform apply
-      #   run: |
-      #     cd iac
-      #     terraform init && terraform apply --auto-approve
+      - name: Terraform init & Terraform apply
+        run: |
+          cd iac
+          terraform init && terraform apply --auto-approve
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: 3.9
-      - name: Install libraries
-        run: |
-            cd pytest
-            python -m pip install --upgrade pip
-            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
       - name: Pytest - Evaluate DynamoDB Table
         run: |
             cd pytest
